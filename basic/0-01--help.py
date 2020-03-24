@@ -6,9 +6,7 @@
 ###################################################
 import datetime
 
-def main():
-    print(help(datetime))
-    print(help('string'))
+# 当你不知道这个类型的变量有哪些函数或成员变量时
+# 可以用help完美解决
+print(help(datetime))
 
-if __name__ == '__main__':
-    main()
