@@ -22,7 +22,7 @@ def try_open_excel(filepath):
         exit
 
 def main():
-   filepath = 'xlwt-xlrd/0-01--open/test.xlsx'
+   filepath = 'xlwt-xlrd/test.xlsx'
    wbk = try_open_excel(filepath)
 
 if __name__ == '__main__':

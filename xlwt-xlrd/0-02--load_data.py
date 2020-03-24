@@ -15,7 +15,7 @@ def show_data_messages(sheet_data):
 
 
 def main():
-    filepath = 'xlwt-xlrd/0-01--open/test.xlsx'
+    filepath = 'xlwt-xlrd/test.xlsx'
     wbk = xlrd.open_workbook(filepath)
     sheet_data = wbk.sheets()[0]
     #sheet_data = wbk.sheet_by_name(sheet_name)
