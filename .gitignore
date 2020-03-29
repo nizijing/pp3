@@ -1,3 +1,4 @@
 sdata/
 __pycache__
 *.cfg
+*.log
