@@ -26,13 +26,11 @@ def load_with_init_dict():
     mysql_conf.read_dict(DEFAULT_CONF)
     mysql_conf.read(filepath)
 
-    ret = {
-        'DEFAULT': {},
-        'mysqld2': {},
-        'mysqld3': {}
-    }
+    ret = {}
+    ret['DEFAULT'] = {}
 
     for section, option_dict in mysql_conf.items():
+        ret[section] = {}
         for option, val in option_dict.items():
             ret[section][option] = val
     

@@ -59,11 +59,10 @@ def load_with_dict():
         }
     }
     mysql_conf.read_dict(mysql_cfg)
-    ret = {
-        'mysqld': {}
-    }
+    ret = {}
 
     for section, option_dict in mysql_conf.items():
+        ret[section] = {}
         for option, val in option_dict.items():
             ret[section][option] = val
     return ret
