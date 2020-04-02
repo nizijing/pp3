@@ -43,6 +43,7 @@ def main():
     cfg = get_conf_val(mysql_conf)
 
     mysql_conf.add_section('mysqld1')
+
     mysql_conf.remove_section('mysqld2')
 
     mysql_conf.set('mysqld1', 'port', '3306')
@@ -51,9 +52,8 @@ def main():
     mysql_conf.set('DEFAULT', 'user', 'root')
     
     mysql_conf.update(cfg)  # 慎用
-
     mysql_conf.write(open('configparser/test_save.cfg', 'w'))
-    
+
 
 if __name__ == '__main__':
     main()
