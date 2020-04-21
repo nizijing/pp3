@@ -23,6 +23,7 @@ class C_LDAP(object):
         self.__server = Server(self.__host, self.__port)
         self.__conn = Connection(self.__server, self.__user, self.__password, auto_bind = True)
         self.staff_data = {}
+        self.depart_data = {}
 
     def show_base_info(self):
         print(self.__conn)
@@ -48,18 +49,20 @@ class C_LDAP(object):
         else:
             return False
 
-    def get_staff_data(self, ou='Users', objectclass = 'inetOrgPerson'):
-        for line in  self.get_userdn_by_args(base_dn = self.__base_dn, objectclass = objectclass):
-            self.staff_data[line.entry_attributes_as_dict['uid'][0]] = line.entry_attributes_as_dict
-        return self.staff_data
+    def get_depart_data(self, objectclass = "groupOfNames"):
+        for line in self.get_userdn_by_args(self.__group_dn, objectclass = objectclass):
+            self.depart_data[line.entry_attributes_as_dict['o'][0]] = line.entry_attributes_as_dict
+        return self.depart_data
 
 def main():
     ldap = C_LDAP(**ldap_config)
     print('测试连接是否成功: ')
     ldap.show_base_info()
-    print('测试获取人员信息：')
-    for key, val in ldap.get_staff_data()['nizj'].items():
-        print(key, val)
+
+    print('-----------------------------------------------')
+    print('测试获取部门信息：')
+    for val in ldap.get_depart_data().values():
+        print(val['description'])
 
 if __name__ == '__main__':
     main()
