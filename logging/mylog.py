@@ -14,17 +14,18 @@ class myLog(logging.Logger):
                 name, 
                 hander_level="INFO",    # 处理器级别，优先级更高
                 level = "INFO",         # 日志级别
-                file_name = None,
+                logpath = None,
+                logbackday = 7,          # 日志保留天数
                 fmt = "%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(funcName)s - %(lineno)d - %(message)s"
                 ):
         super().__init__(name, level = level)
-        if file_name is not None:
+        if logpath is not None:
             hander = TimedRotatingFileHandler(  # 输出到文件
-                filename=file_name, # 日志路径
+                filename=logpath, # 日志路径
                 encoding='utf8',
                 when='D',         # D 天；H 小时；M 分；S秒
                 interval=1,       # 间隔
-                backupCount=7     # 留7份
+                backupCount=logbackday     
             )
         else:
             hander = logging.StreamHandler()    # 输出到屏幕
@@ -33,8 +34,8 @@ class myLog(logging.Logger):
         hander.setFormatter(logging.Formatter(fmt)) # 设置fmt的格式：日志的显示样式
 
 
-def test():
-    log = myLog('mainlog', level="INFO", hander_level="DEBUG")
+def main():
+    log = myLog('mainlog', level="ERROR", hander_level="CRITICAL")
     log.debug('test for debug')
     log.info('test for info')
     log.warning('test for warning')
@@ -42,4 +43,4 @@ def test():
     log.critical('test for critical')
 
 if __name__ == '__main__':
-    test()
+    main()
