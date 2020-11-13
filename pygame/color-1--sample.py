@@ -5,9 +5,6 @@
 # Author : zijing (zijing412@163.com)
 ###################################################
 
-
-
-
 import pygame
 from pygame.locals import *
 from sys import exit
