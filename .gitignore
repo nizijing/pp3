@@ -5,4 +5,4 @@ __pycache__
 *.log.*
 setting.py
 test
-python-cookbook
+cookbook-sample
