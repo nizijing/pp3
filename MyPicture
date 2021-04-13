@@ -1,0 +1,8 @@
+digraph MyPicture {
+	graph [rankdir=LR]
+	node [shape=plaintext]
+	edge [arrowhead=vee arrowsize=2]
+	Dog
+	Cat
+	Dog -> Cat
+}
