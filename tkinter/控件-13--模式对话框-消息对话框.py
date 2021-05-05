@@ -11,6 +11,16 @@
 # 消息对话框: 引用 tkinter.messagebox 包，可使用消息对话框函数。
 # 执行这些函数，可弹出模式消息对话框，并根据用户的响应但会一个布尔值。其通式为：消息对话框函数(<title=标题文本>,<message=消息文本>,[其他参数])
 
+# tkinter.messagebox.showinfo(title='Hi', message='你好！')
+# tkinter.messagebox.showwarning(title='Hi', message='警告！')
+# tkinter.messagebox.showerror(title='Hi', message='出错了！') 
+# tkinter.messagebox.askquestion(title='Hi', message='你好！')
+#   返回'yes', 'no'：
+# tkinter.messagebox.askyesno(title='Hi', message='你好！')
+#   返回true、false
+# tkinter.messagebox.askokcancel(title='Hi', message='你好！')
+#   返回true、false
+
 from tkinter import *
 import tkinter.messagebox
 
