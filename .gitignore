@@ -6,7 +6,10 @@ __pycache__
 setting.py
 test
 cookbook-sample
-screen.png
 test.*
 *.docx
 result.xls
+*.gif
+*.png
+*.jpg
+*.jpeg
