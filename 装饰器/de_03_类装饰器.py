@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+__author__ = 'zijing'
+###################################################
+# Created : 2021-06-30 16:21:17
+# Author  : zijing (zijing412@163.com)
+# Version : 1.0.0
+###################################################
+# 基于类装饰器的实现，必须实现 __call__ 和 __init__两个内置函数。
+# __init__ ：接收被装饰函数
+# __call__ ：实现装饰逻辑。
+
+class logger(object):
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print("[INFO]: the function {func}() is running...".format(func=self.func.__name__))
+        return self.func(*args, **kwargs)
+
+@logger
+def say(something):
+    print("say {}!".format(something))
+
+say("hello")
