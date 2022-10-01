@@ -16,6 +16,7 @@ class mainGameLogic(MainFrame):
             self.gameInit()
             return
         self.history_msg.AppendText('{:2d}'.format(guessnum) + result_msg + '\n')
+        self.input_num.SetValue('')
 
 
     def onGameHelp( self, event ):
@@ -32,14 +33,16 @@ class mainGameLogic(MainFrame):
             c_dialog.Destroy()  # 则关闭提示框
 
     def gameInit(self):
-        self.input_num.Enable( True )
         self.num = random.randint (1,100)
         print(self.num)
         self.history_msg.SetValue('游戏开始!\n')
+        self.input_num.SetValue('')
 
 
 if __name__ == "__main__":
     app = wx.App()
-    mainGameLogic(None).Show()
+    mgame = mainGameLogic(None)
+    mgame.Show()
+    mgame.gameInit()
     app.MainLoop()
     
