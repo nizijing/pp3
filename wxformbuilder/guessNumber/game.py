@@ -2,6 +2,10 @@ import wx, random
 from mainFrame import MainFrame
 
 class mainGameLogic(MainFrame):
+    def __init__( self, parent ):
+        MainFrame.__init__( self, parent )
+        self.gameInit()
+
     def onGuessNum( self, event ):
         guessnum = self.input_num.GetValue()
         if not guessnum:
@@ -43,6 +47,5 @@ if __name__ == "__main__":
     app = wx.App()
     mgame = mainGameLogic(None)
     mgame.Show()
-    mgame.gameInit()
     app.MainLoop()
     
