@@ -43,6 +43,10 @@ class cMineSwapRender():
         self.mine_area_width = 10
         self.mine_area_height = 10
         self.mine_num = self.mine_flag = 10
+        self.suround_idx = [[-1, -1], [0, -1], [1, -1],
+                            [-1,  0],          [1,  0],
+                            [-1,  1], [0,  1], [1,  1]
+        ]
         assert self.mine_num < self.mine_area_width * self.mine_area_height, '雷的数量比雷区总数大'
         self.window_width = MARGINLEFT + self.mine_area_width * CELLSIZE + MARGINRIGHT
         self.window_height = MARGINUP + self.mine_area_height * CELLSIZE + MARGINDOWN

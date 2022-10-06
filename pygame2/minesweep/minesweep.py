@@ -37,22 +37,11 @@ class cMineSwapLocig(cMineSwapRender):
         if self.cell_value[arrx][arry] == 0:
             self.draw_cell(arrx, arry, self.cell_status_image[self.cell_value[arrx][arry]])
             self.cell_status[arrx][arry] = FLAGSWAPPWD
-            if(arrx > 0):
-                self.draw_after_sweep(arrx - 1, arry)
-                if (arry > 0):
-                    self.draw_after_sweep(arrx - 1, arry - 1)
-                if (arry < self.mine_area_height - 1):
-                    self.draw_after_sweep(arrx - 1, arry + 1)
-            if(arrx < self.mine_area_width - 1):
-                self.draw_after_sweep(arrx + 1, arry)
-                if (arry > 0):
-                    self.draw_after_sweep(arrx + 1, arry - 1)
-                if (arry < self.mine_area_height - 1):
-                    self.draw_after_sweep(arrx + 1, arry + 1)
-            if(arry > 0):
-                self.draw_after_sweep(arrx, arry - 1)
-            if(arry < self.mine_area_height - 1):
-                self.draw_after_sweep(arrx, arry + 1)
+            for (i, j) in self.suround_idx:
+                if i + arry in (-1, self.mine_area_height) or j + arrx in (-1, self.mine_area_width):
+                    continue
+                self.draw_after_sweep(arrx + j, arry + i)
+            return
 
         elif 0 < self.cell_value[arrx][arry] < self.mine_num - 1:
             self.draw_cell(arrx, arry, self.cell_status_image[self.cell_value[arrx][arry]])
@@ -61,11 +50,7 @@ class cMineSwapLocig(cMineSwapRender):
 
 
     def calc_suround_num(self, arrx, arry):
-        suround_idx = [ [-1, -1], [0, -1], [1, -1],
-                        [-1,  0],          [1,  0],
-                        [-1,  1], [0,  1], [1,  1]
-        ]
-        for (i, j) in suround_idx:
+        for (i, j) in self.suround_idx:
             if i + arry in (-1, self.mine_area_height) or j + arrx in (-1, self.mine_area_width):
                 continue
             if self.cell_value[arrx + j][arry + i] == THISISMINE:
