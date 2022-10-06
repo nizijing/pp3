@@ -7,7 +7,7 @@ __author__ = 'zijing'
 # Version : 1.0.0
 ###################################################
 
-import pygame, sys, itertools, random, numpy as np
+import pygame, sys, itertools
 from pygame.locals import *
 from setting import *
 from minesweep_rander import cMineSwapRender
@@ -54,35 +54,23 @@ class cMineSwapLocig(cMineSwapRender):
             if(arry < self.mine_area_height - 1):
                 self.draw_after_sweep(arrx, arry + 1)
 
-        elif 0 < self.cell_value[arrx][arry] < 9:
+        elif 0 < self.cell_value[arrx][arry] < self.mine_num - 1:
             self.draw_cell(arrx, arry, self.cell_status_image[self.cell_value[arrx][arry]])
         self.cell_status[arrx][arry] = FLAGSWAPPWD
         return
 
 
     def calc_suround_num(self, arrx, arry):
-        safe_area = []
-        if arrx > 0:
-            safe_area.append([arrx -1, arry])
-            if arry > 0:
-                safe_area.append([arrx - 1, arry - 1])
-            if arry + 1 < self.mine_area_height:
-                safe_area.append([arrx - 1, arry + 1])
-        if arrx + 1 < self.mine_area_width:
-            safe_area.append([arrx + 1, arry])
-            if arry > 0:
-                safe_area.append([arrx + 1, arry - 1])
-            if arry + 1 < self.mine_area_height:
-                safe_area.append([arrx + 1, arry + 1])
-        if arry > 0:
-            safe_area.append([arrx, arry - 1])
-        if arry + 1 < self.mine_area_width:
-            safe_area.append([arrx, arry + 1])
-
-        for arrx, arry in safe_area:
-            if self.cell_value[arrx][arry] == THISISMINE:
+        suround_idx = [ [-1, -1], [0, -1], [1, -1],
+                        [-1,  0],          [1,  0],
+                        [-1,  1], [0,  1], [1,  1]
+        ]
+        for (i, j) in suround_idx:
+            if i + arry in (-1, self.mine_area_height) or j + arrx in (-1, self.mine_area_width):
                 continue
-            self.cell_value[arrx][arry] += 1
+            if self.cell_value[arrx + j][arry + i] == THISISMINE:
+                continue
+            self.cell_value[arrx + j][arry + i] += 1
 
 
     def game_over_logic(self):
