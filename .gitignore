@@ -9,7 +9,3 @@ cookbook-sample
 test.*
 *.docx
 result.xls
-*.gif
-*.png
-*.jpg
-*.jpeg
