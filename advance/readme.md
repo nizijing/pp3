@@ -1,0 +1,2 @@
+- http://hifengge.com/
+- https://github.com/stevencn76/python_advance
