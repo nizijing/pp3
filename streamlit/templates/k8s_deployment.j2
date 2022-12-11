@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ app.name }}
+  namespace: {{ app.namespace }}
+spec:
+  replicas: {{ app.replicas }}
+  selector:
+    matchLabels:
+      app: {{ app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ app.name }}
+    spec:
+      volumes:
+        - name: timezone
+          hostPath:
+            path: /etc/localtime
+            type: ''
+      containers:
+        - image: 'harbor.domain.xxx/{{ app.name }}:{{ app.first_image_tag }}'
+          name: {{ app.name }}
+          volumeMounts:
+            - name: timezone
+              readOnly: true
+              mountPath: /etc/localtime
+      imagePullSecrets:
+        - name: default-secret
