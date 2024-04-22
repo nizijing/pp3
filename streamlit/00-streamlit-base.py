@@ -56,6 +56,14 @@ color = st.selectbox("what color you like", ('yellow', 'blue', 'green'))
 st.write("you like ", color)
 
 
+with st.container():
+    cols1,cols2 = st.columns(2)
+    with cols1.container():
+        color2 = st.selectbox("what color you like2", ('yellow', 'blue', 'green'))
+    with cols2.container():
+        st.write("you like ", color2)
+
+
 anaimals = st.multiselect("what analimal you like", ('dog', 'cat', 'bird'))
 st.write("you like {}".format(anaimals))
 

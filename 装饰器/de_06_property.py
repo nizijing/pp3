@@ -12,11 +12,13 @@ __author__ = 'zijing'
 # @age.setter 使得我们可以使用XiaoMing.age = 25这样的方式直接赋值。
 # @age.deleter 使得我们可以使用del XiaoMing.age这样的方式来删除属性。
 
+# 意义：1可以把方法变为属性，2防止属性被修改
+
 
 class Student(object):
     def __init__(self, name):
         self.name = name
-        self.name = None
+        self._age = None
 
     @property
     def age(self):
