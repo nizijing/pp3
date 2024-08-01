@@ -59,18 +59,11 @@ def client_code(remote_control):
     remote_control.add_command(living_room_on)
     remote_control.add_command(living_room_off)
 
-    print("Client: Pressing the ON button")
-    remote_control.press_button()
-
-    print("\nClient: Pressing the OFF button")
     remote_control.press_button()
 
 remote = RemoteControl()
 client_code(remote)
 
 # 输出: 
-# Client: Pressing the ON button
 # The light is turned on.
-#
-# Client: Pressing the OFF button
 # The light is turned off.
